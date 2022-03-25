@@ -27,7 +27,7 @@ input,textarea {
 border: 0;
 background: none;
 outline: 0 !important;
-font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
+font-family: "Gotham SSm A", "Gotham SSm B", sans-serif;
 }
 body{
     font:14px 'Roboto', sans-serif;

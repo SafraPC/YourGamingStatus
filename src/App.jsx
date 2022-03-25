@@ -2,12 +2,16 @@ import { GlobalStyles } from "./styles/globalStyles";
 import "react-toastify/dist/ReactToastify.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer } from "react-toastify";
+import Router from "./router";
+import { ChakraProvider } from "@chakra-ui/react";
 function App() {
 	return (
 		<div>
-			<ToastContainer />
-			<GlobalStyles />
-			<h1>Hello World</h1>
+			<ChakraProvider>
+				<ToastContainer />
+				<GlobalStyles />
+				<Router />
+			</ChakraProvider>
 		</div>
 	);
 }
