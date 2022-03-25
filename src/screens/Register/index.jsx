@@ -10,14 +10,26 @@ import {
 import { Mail } from "react-feather";
 import { RiLockPasswordLine, RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const Register = () => {
 	const [loginPasswordState, setLoginPasswordState] = useState({
 		email: "",
 		password: "",
 		rePassword: "",
-		isPasswordVisible: false,
 	});
+	const [screenStatus, setScreenStatus] = useState({
+		isPasswordVisible: false,
+		isLoading: false,
+	});
+
 	const navigate = useNavigate();
+
+	const handleSubmit = () => {
+		if (loginPasswordState.password !== loginPasswordState.rePassword) {
+			toast.error("As senhas não coincidem!");
+		}
+		toast.success("Nice!");
+	};
 
 	return (
 		<LoginPage>
@@ -58,7 +70,7 @@ const Register = () => {
 							value={loginPasswordState.password}
 							focusBorderColor="#2b2b2b"
 							variant={"flushed"}
-							type={loginPasswordState.isPasswordVisible ? "text" : "password"}
+							type={screenStatus.isPasswordVisible ? "text" : "password"}
 							placeholder="ex: 123@"
 						/>
 						<InputRightElement width="3.5rem">
@@ -66,13 +78,13 @@ const Register = () => {
 								variant={"ghost"}
 								colorScheme="blackAlpha"
 								onClick={() =>
-									setLoginPasswordState({
-										...loginPasswordState,
-										isPasswordVisible: !loginPasswordState.isPasswordVisible,
+									setScreenStatus({
+										...screenStatus,
+										isPasswordVisible: !screenStatus.isPasswordVisible,
 									})
 								}
 							>
-								{!loginPasswordState.isPasswordVisible ? (
+								{!screenStatus.isPasswordVisible ? (
 									<RiEyeCloseLine size={20} color="white" />
 								) : (
 									<RiEyeLine size={20} color="white" />
@@ -95,7 +107,7 @@ const Register = () => {
 								});
 							}}
 							value={loginPasswordState.rePassword}
-							type={loginPasswordState.isPasswordVisible ? "text" : "password"}
+							type={screenStatus.isPasswordVisible ? "text" : "password"}
 							placeholder="ex: 123@"
 						/>
 					</InputGroup>
@@ -107,10 +119,11 @@ const Register = () => {
 						Já tenho conta
 					</label>
 					<Button
+						isLoading={screenStatus.isLoading}
 						colorScheme="whiteAlpha"
 						loadingText="Submitting"
 						variant="solid"
-						onClick={() => console.log(loginPasswordState)}
+						onClick={handleSubmit}
 					>
 						Cadastrar
 					</Button>
