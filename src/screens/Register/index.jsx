@@ -9,14 +9,16 @@ import {
 } from "@chakra-ui/react";
 import { Mail } from "react-feather";
 import { RiLockPasswordLine, RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
-import { useNavigate } from "react-router";
-const Login = () => {
+import { useNavigate } from "react-router-dom";
+const Register = () => {
 	const [loginPasswordState, setLoginPasswordState] = useState({
-		login: "",
+		email: "",
 		password: "",
+		rePassword: "",
 		isPasswordVisible: false,
 	});
 	const navigate = useNavigate();
+
 	return (
 		<LoginPage>
 			<LoginDivision>
@@ -78,12 +80,31 @@ const Login = () => {
 							</Button>
 						</InputRightElement>
 					</InputGroup>
+					<InputGroup>
+						<InputLeftElement
+							color
+							children={<Mail color="silver" size={20} />}
+						/>
+						<Input
+							focusBorderColor="#2b2b2b"
+							variant={"flushed"}
+							onChange={(e) => {
+								setLoginPasswordState({
+									...loginPasswordState,
+									rePassword: e.target.value,
+								});
+							}}
+							value={loginPasswordState.rePassword}
+							type={loginPasswordState.isPasswordVisible ? "text" : "password"}
+							placeholder="ex: 123@"
+						/>
+					</InputGroup>
 					<label
 						onClick={() => {
-							navigate("/register");
+							navigate("/login");
 						}}
 					>
-						Criar conta
+						Já tenho conta
 					</label>
 					<Button
 						colorScheme="whiteAlpha"
@@ -91,7 +112,7 @@ const Login = () => {
 						variant="solid"
 						onClick={() => console.log(loginPasswordState)}
 					>
-						Logar
+						Cadastrar
 					</Button>
 				</LoginForm>
 			</LoginDivision>
@@ -99,4 +120,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;
