@@ -1,13 +1,8 @@
 const express = require("express");
-const {
-	findAccount,
-	createAccount,
-	findAllAccounts,
-} = require("../controllers/auth/account");
+const { login, register } = require("../controllers/auth/account");
 
 const router = express.Router();
 
-router.post("/searchUser", findAccount);
-router.post("/createUser", createAccount);
-router.get("/users", findAllAccounts);
+router.post("/searchUser", login);
+router.post("/createUser", register);
 module.exports = router;
