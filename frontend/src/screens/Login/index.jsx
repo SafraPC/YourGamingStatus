@@ -10,13 +10,23 @@ import {
 import { Mail } from "react-feather";
 import { RiLockPasswordLine, RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
+import { useLogin } from "../../hooks/auth";
+
 const Login = () => {
 	const [loginPasswordState, setLoginPasswordState] = useState({
 		login: "",
 		password: "",
 		isPasswordVisible: false,
 	});
+
 	const navigate = useNavigate();
+
+	const { login, loading } = useLogin();
+	const handleSubmit = async () => {
+		if (await login(loginPasswordState.login, loginPasswordState.password)) {
+			navigate("/home");
+		}
+	};
 	return (
 		<LoginPage>
 			<LoginDivision>
@@ -86,10 +96,11 @@ const Login = () => {
 						Criar conta
 					</label>
 					<Button
+						isLoading={loading}
 						colorScheme="whiteAlpha"
 						loadingText="Submitting"
 						variant="solid"
-						onClick={() => console.log(loginPasswordState)}
+						onClick={handleSubmit}
 					>
 						Logar
 					</Button>

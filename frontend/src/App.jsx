@@ -6,13 +6,11 @@ import Router from "./router";
 import { ChakraProvider } from "@chakra-ui/react";
 function App() {
 	return (
-		<div>
-			<ChakraProvider>
-				<ToastContainer />
-				<GlobalStyles />
-				<Router />
-			</ChakraProvider>
-		</div>
+		<ChakraProvider>
+			<ToastContainer />
+			<GlobalStyles />
+			<Router />
+		</ChakraProvider>
 	);
 }
 
