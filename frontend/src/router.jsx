@@ -30,6 +30,14 @@ function AppRoutes() {
 				}
 			/>
 			<Route
+				path="*"
+				element={
+					<UnAuthConfig>
+						<Login />
+					</UnAuthConfig>
+				}
+			/>
+			<Route
 				path="/login"
 				element={
 					<UnAuthConfig>
