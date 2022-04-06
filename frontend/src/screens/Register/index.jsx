@@ -7,28 +7,33 @@ import {
 	InputRightElement,
 	Button,
 } from "@chakra-ui/react";
-import { Mail } from "react-feather";
+import { Mail, User } from "react-feather";
 import { RiLockPasswordLine, RiEyeLine, RiEyeCloseLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useLogin } from "../../hooks/auth";
 const Register = () => {
 	const [loginPasswordState, setLoginPasswordState] = useState({
 		email: "",
 		password: "",
+		name: "",
 		rePassword: "",
 	});
-	const [screenStatus, setScreenStatus] = useState({
-		isPasswordVisible: false,
-		isLoading: false,
-	});
-
+	const [passwordVisible, setPasswordVisible] = useState(false);
 	const navigate = useNavigate();
 
-	const handleSubmit = () => {
-		if (loginPasswordState.password !== loginPasswordState.rePassword) {
-			toast.error("As senhas não coincidem!");
+	const { loading, register } = useLogin();
+
+	const handleSubmit = async () => {
+		if (
+			await register(
+				loginPasswordState.email,
+				loginPasswordState.name,
+				loginPasswordState.password,
+				loginPasswordState.rePassword
+			)
+		) {
+			navigate("/home");
 		}
-		toast.success("Nice!");
 	};
 
 	return (
@@ -36,6 +41,25 @@ const Register = () => {
 			<LoginDivision>
 				<h3>YourGamingMetric.com</h3>
 				<LoginForm>
+					<InputGroup>
+						<InputLeftElement
+							color
+							children={<User color="silver" size={20} />}
+						/>
+						<Input
+							focusBorderColor="#2b2b2b"
+							variant={"flushed"}
+							onChange={(e) => {
+								setLoginPasswordState({
+									...loginPasswordState,
+									name: e.target.value,
+								});
+							}}
+							value={loginPasswordState.name}
+							type="text"
+							placeholder="ex: Leandro"
+						/>
+					</InputGroup>
 					<InputGroup>
 						<InputLeftElement
 							color
@@ -47,10 +71,10 @@ const Register = () => {
 							onChange={(e) => {
 								setLoginPasswordState({
 									...loginPasswordState,
-									login: e.target.value,
+									email: e.target.value,
 								});
 							}}
-							value={loginPasswordState.login}
+							value={loginPasswordState.email}
 							type="email"
 							placeholder="ex: safra@gmail.com"
 						/>
@@ -70,21 +94,16 @@ const Register = () => {
 							value={loginPasswordState.password}
 							focusBorderColor="#2b2b2b"
 							variant={"flushed"}
-							type={screenStatus.isPasswordVisible ? "text" : "password"}
+							type={passwordVisible ? "text" : "password"}
 							placeholder="ex: 123@"
 						/>
 						<InputRightElement width="3.5rem">
 							<Button
 								variant={"ghost"}
 								colorScheme="blackAlpha"
-								onClick={() =>
-									setScreenStatus({
-										...screenStatus,
-										isPasswordVisible: !screenStatus.isPasswordVisible,
-									})
-								}
+								onClick={() => setPasswordVisible(!passwordVisible)}
 							>
-								{!screenStatus.isPasswordVisible ? (
+								{!passwordVisible ? (
 									<RiEyeCloseLine size={20} color="white" />
 								) : (
 									<RiEyeLine size={20} color="white" />
@@ -107,7 +126,7 @@ const Register = () => {
 								});
 							}}
 							value={loginPasswordState.rePassword}
-							type={screenStatus.isPasswordVisible ? "text" : "password"}
+							type={passwordVisible ? "text" : "password"}
 							placeholder="ex: 123@"
 						/>
 					</InputGroup>
@@ -119,7 +138,7 @@ const Register = () => {
 						Já tenho conta
 					</label>
 					<Button
-						isLoading={screenStatus.isLoading}
+						isLoading={loading}
 						colorScheme="whiteAlpha"
 						loadingText="Submitting"
 						variant="solid"
