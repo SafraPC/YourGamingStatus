@@ -3,8 +3,8 @@ import { Page } from "../../components/Page";
 
 const Home = () => {
 	return (
-		<Page screen="Home">
-			<h1>Login Page!</h1>
+		<Page screen="Lobby">
+			<h1>Lobby Page!</h1>
 		</Page>
 	);
 };

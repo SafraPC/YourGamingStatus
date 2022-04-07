@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import WhoWeAre from "./screens/WhoWeAre";
 
 function AppRoutes() {
 	const AuthConfig = ({ children }) => {
@@ -58,6 +59,14 @@ function AppRoutes() {
 				element={
 					<AuthConfig>
 						<Home />
+					</AuthConfig>
+				}
+			/>
+			<Route
+				path="/who-we-are"
+				element={
+					<AuthConfig>
+						<WhoWeAre />
 					</AuthConfig>
 				}
 			/>

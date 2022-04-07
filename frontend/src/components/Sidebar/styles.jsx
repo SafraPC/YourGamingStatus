@@ -33,7 +33,7 @@ export const StyledSpan = styled.span`
 	margin-left: 1rem;
 	margin: 0px;
 	margin-left: ${({ opened }) => (opened ? "1rem" : null)};
-	width: ${({ opened }) => (opened ? "70px" : "0px")};
+	width: ${({ opened }) => (opened ? "95px" : "0px")};
 	height: ${({ opened }) => (opened ? "16px" : "0px")};
 	transform: ${({ opened }) => (opened ? "scale(1)" : "scale(0)")};
 	transition-duration: 0.7s;

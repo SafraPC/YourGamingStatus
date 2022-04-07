@@ -25,5 +25,6 @@ export const ActiveTooltip = styled.div`
 	}
 	> span {
 		font-size: 15px;
+		width: auto;
 	}
 `;

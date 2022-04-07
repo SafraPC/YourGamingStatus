@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import {
 	SidebarElement,
@@ -6,26 +6,23 @@ import {
 	StyledSpan,
 	WidthToggle,
 } from "./styles";
-import {
-	AiOutlineHome,
-	AiOutlineLogout,
-	AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
+import { MdOutlineWorkOutline } from "react-icons/md";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { Tooltip } from "../Tooltip";
-import { SidebarContext } from "../context/sidebar";
+import { SidebarContext } from "../../context/sidebar";
 
 const SidebarUpsideElements = [
 	{
-		title: "Home",
+		title: "Lobby",
 		path: "/home",
 		icon: AiOutlineHome,
 		filled: false,
 	},
 	{
-		title: "Produtos",
-		path: "/products",
-		icon: AiOutlineShoppingCart,
+		title: "Quem Somos",
+		path: "/who-we-are",
+		icon: MdOutlineWorkOutline,
 		filled: false,
 	},
 	{
