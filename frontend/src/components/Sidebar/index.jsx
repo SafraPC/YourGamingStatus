@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import {
 	SidebarElement,
@@ -8,16 +8,17 @@ import {
 } from "./styles";
 import {
 	AiOutlineHome,
-	AiOutlineLogin,
+	AiOutlineLogout,
 	AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
 import { Tooltip } from "../Tooltip";
+import { SidebarContext } from "../context/sidebar";
 
 const SidebarUpsideElements = [
 	{
 		title: "Home",
-		path: "/who-we-are",
+		path: "/home",
 		icon: AiOutlineHome,
 		filled: false,
 	},
@@ -28,31 +29,39 @@ const SidebarUpsideElements = [
 		filled: false,
 	},
 	{
-		title: "Login",
+		title: "Logout",
 		path: "/login",
-		icon: AiOutlineLogin,
+		icon: AiOutlineLogout,
+		action: () => {
+			localStorage.removeItem("@token");
+		},
 		filled: false,
 	},
 ];
 
 const Sidebar = ({ screen }) => {
 	const navigate = useNavigate();
-	const [isOpenBar, setOpenBar] = useState(false);
+	const { isSidebarOpen, setIsSidebar } = useContext(SidebarContext);
 
 	return (
-		<StyledSidebar opened={isOpenBar}>
-			<WidthToggle onClick={() => setOpenBar(!isOpenBar)}>
-				{isOpenBar ? <BiLeftArrow size={20} /> : <BiRightArrow size={20} />}
+		<StyledSidebar opened={isSidebarOpen}>
+			<WidthToggle onClick={() => setIsSidebar(!isSidebarOpen)}>
+				{isSidebarOpen ? <BiLeftArrow size={20} /> : <BiRightArrow size={20} />}
 			</WidthToggle>
 			{SidebarUpsideElements.map((item) => (
 				<SidebarElement
 					key={item.path}
-					onClick={() => navigate(item.path)}
+					onClick={() => {
+						if (item.action) {
+							item.action();
+						}
+						navigate(item.path);
+					}}
 					filled={screen === item.title}
 				>
 					<item.icon size={15} />
-					<StyledSpan opened={isOpenBar}>{item.title}</StyledSpan>
-					{!isOpenBar && <Tooltip message={item.title} />}
+					<StyledSpan opened={isSidebarOpen}>{item.title}</StyledSpan>
+					{!isSidebarOpen && <Tooltip message={item.title} />}
 				</SidebarElement>
 			))}
 		</StyledSidebar>
