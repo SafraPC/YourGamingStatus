@@ -12,6 +12,13 @@ export const StyledSidebar = styled.div`
 	background-color: ${colors.backgroundHeader};
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
+	> div {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
 `;
 
 export const WidthToggle = styled.div`
@@ -38,7 +45,7 @@ export const StyledSpan = styled.span`
 	transform: ${({ opened }) => (opened ? "scale(1)" : "scale(0)")};
 	transition-duration: 0.7s;
 `;
-export const SidebarElement = styled.section`
+export const SidebarElement = styled.div`
 	padding: 0.7rem;
 	margin-top: 0.5rem;
 	width: 90%;
@@ -49,6 +56,7 @@ export const SidebarElement = styled.section`
 	color: ${({ filled }) =>
 		filled ? `${colors.softWhite2}` : `${colors.softWhite1}`};
 	cursor: pointer;
+	margin-block-end: ${({ bottomBar }) => (bottomBar ? "auto" : "")};
 	background-color: ${({ filled }) => (filled ? `${colors.softBlack3}` : null)};
 	transition: 0.2s ease;
 	:hover {
@@ -61,5 +69,3 @@ export const SidebarElement = styled.section`
 `;
 
 export const BarElement = styled.hr``;
-
-export const StyledBottomBar = styled.div``;
