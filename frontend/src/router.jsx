@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
+import TalkToUs from "./screens/TalkToUs";
 import WhoWeAre from "./screens/WhoWeAre";
 
 function AppRoutes() {
@@ -67,6 +68,14 @@ function AppRoutes() {
 				element={
 					<AuthConfig>
 						<WhoWeAre />
+					</AuthConfig>
+				}
+			/>
+			<Route
+				path="/talk-to-us"
+				element={
+					<AuthConfig>
+						<TalkToUs />
 					</AuthConfig>
 				}
 			/>

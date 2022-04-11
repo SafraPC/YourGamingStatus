@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import {
 	SidebarElement,
-	StyledBottomBar,
 	StyledSidebar,
 	StyledSpan,
 	WidthToggle,
@@ -10,6 +9,7 @@ import {
 import { AiOutlineHome, AiOutlineLogout } from "react-icons/ai";
 import { MdOutlineWorkOutline } from "react-icons/md";
 import { BiRightArrow, BiLeftArrow } from "react-icons/bi";
+import { BsChat } from "react-icons/bs";
 import { Tooltip } from "../Tooltip";
 import { SidebarContext } from "../../context/sidebar";
 
@@ -24,6 +24,12 @@ const SidebarUpsideElements = [
 		title: "Quem Somos",
 		path: "/who-we-are",
 		icon: MdOutlineWorkOutline,
+		filled: false,
+	},
+	{
+		title: "Fale Conosco",
+		path: "/talk-to-us",
+		icon: BsChat,
 		filled: false,
 	},
 ];
