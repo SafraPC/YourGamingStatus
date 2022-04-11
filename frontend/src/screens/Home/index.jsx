@@ -1,10 +1,13 @@
 import React from "react";
 import { Page } from "../../components/Page";
+import { PageContent, PageTitle } from "../../styles/styles";
 
 const Home = () => {
 	return (
 		<Page screen="Lobby">
-			<h1>Lobby Page!</h1>
+			<PageContent>
+				<PageTitle>Minhas Métricas:</PageTitle>
+			</PageContent>
 		</Page>
 	);
 };

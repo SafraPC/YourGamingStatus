@@ -11,7 +11,9 @@ export const StyledContent = styled.div`
 	min-height: 100vh;
 	height: 100%;
 	width: 100%;
-	padding: 1rem;
+	padding: 0.6rem;
+	display: flex;
+	justify-content: center;
 `;
 
 export const ColumnContainer = styled.div`
