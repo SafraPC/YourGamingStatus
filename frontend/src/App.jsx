@@ -5,15 +5,18 @@ import { ToastContainer } from "react-toastify";
 import Router from "./router";
 import { ChakraProvider } from "@chakra-ui/react";
 import { SidebarProvider } from "./context/sidebar";
+import { UserProvider } from "./context/user";
 function App() {
 	return (
-		<SidebarProvider>
-			<ChakraProvider>
-				<ToastContainer />
-				<GlobalStyles />
-				<Router />
-			</ChakraProvider>
-		</SidebarProvider>
+		<UserProvider>
+			<SidebarProvider>
+				<ChakraProvider>
+					<ToastContainer />
+					<GlobalStyles />
+					<Router />
+				</ChakraProvider>
+			</SidebarProvider>
+		</UserProvider>
 	);
 }
 
