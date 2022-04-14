@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../themes/colors";
 
-export const StyledSidebar = styled.div`
+export const StyledSidebar = styled.nav`
 	height: 100vh;
 	align-items: center;
 	position: sticky;

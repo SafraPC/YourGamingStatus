@@ -18,7 +18,10 @@ export const LoginPage = styled.div`
 
 export const LoginDivision = styled.div`
 	padding: 1rem;
-	min-width: 500px;
+	width: 500px;
+	@media screen and (max-width: 700px) {
+		width: 75%;
+	}
 	display: flex;
 	flex-direction: column;
 	background: rgba(255, 255, 255, 0.26);
