@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { colors } from "../../themes/colors";
 
 export const Table = styled.table`
 	font-family: arial, sans-serif;
@@ -57,7 +56,7 @@ export const Card = styled.div`
 export const ChartContent = styled.div`
 	display: flex;
 	justify-content: center;
-	margin-top: 1.5rem;
+	background-color: white;
 	@media screen and (min-width: 992px) {
 		padding: 3rem;
 	}
@@ -92,4 +91,37 @@ export const HorizontalView = styled.div`
 	width: 100%;
 	align-items: center;
 	justify-content: space-between;
+`;
+
+export const ModalForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+`;
+
+export const ModalInputField = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	:not(:first-child) {
+		margin-top: 1.5rem;
+	}
+`;
+
+export const ModalLabel = styled.label`
+	color: black;
+
+	margin-bottom: 0.4rem;
+	font-size: 14px;
+`;
+
+export const AlignTabView = styled.div`
+	margin-top: 2.5rem;
+	> label {
+		font-size: 18px;
+		font-weight: bold;
+	}
+	padding: 1rem;
 `;

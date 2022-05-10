@@ -4,6 +4,7 @@ import { PageContent, PageTitle } from "../../styles/styles";
 import DoughnutChart from "./components/doughnutChart";
 import { AddItemModal } from "./components/modal-add-items";
 import TableData from "./components/tableData";
+import { RenderTabs } from "./components/tabs/tabIndex";
 import VerticalChart from "./components/verticalChart";
 import {
 	AddItemButton,
@@ -52,15 +53,60 @@ const Home = () => {
 					</Card>
 				</CardContainer>
 				<ChartContainer>
-					<ChartContent>
-						<VerticalChart />
-					</ChartContent>
-					<ChartContent>
-						<DoughnutChart />
-					</ChartContent>
-					<ChartContent>
-						<TableData />
-					</ChartContent>
+					<RenderTabs
+						label="Generos mais jogados! (TOP 10): "
+						renderGraph={() => (
+							<ChartContent>
+								<VerticalChart />
+							</ChartContent>
+						)}
+						renderRing={() => (
+							<ChartContent>
+								<DoughnutChart />
+							</ChartContent>
+						)}
+						renderTable={() => (
+							<ChartContent>
+								<TableData />
+							</ChartContent>
+						)}
+					/>
+					<RenderTabs
+						label="Games mais jogados! (TOP 10): "
+						renderGraph={() => (
+							<ChartContent>
+								<VerticalChart />
+							</ChartContent>
+						)}
+						renderRing={() => (
+							<ChartContent>
+								<DoughnutChart />
+							</ChartContent>
+						)}
+						renderTable={() => (
+							<ChartContent>
+								<TableData />
+							</ChartContent>
+						)}
+					/>
+					<RenderTabs
+						label="Maiores conquistas! (TOP 10): "
+						renderGraph={() => (
+							<ChartContent>
+								<VerticalChart />
+							</ChartContent>
+						)}
+						renderRing={() => (
+							<ChartContent>
+								<DoughnutChart />
+							</ChartContent>
+						)}
+						renderTable={() => (
+							<ChartContent>
+								<TableData />
+							</ChartContent>
+						)}
+					/>
 				</ChartContainer>
 			</PageContent>
 		</Page>
