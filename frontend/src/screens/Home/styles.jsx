@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../themes/colors";
 
 export const Table = styled.table`
 	font-family: arial, sans-serif;
@@ -65,4 +66,30 @@ export const ChartContent = styled.div`
 		max-height: 500px !important;
 		min-height: 300px !important;
 	}
+`;
+
+export const AddItemButton = styled.button`
+	padding: 0.5rem;
+	top: 20px;
+	right: 45px;
+	cursor: pointer;
+	border: green;
+	border-radius: 0.3rem;
+	background-color: white;
+	border: 1px solid green;
+	color: green;
+	transition: background-color 0.3s ease;
+	:hover {
+		background-color: green;
+		color: white;
+	}
+`;
+
+export const HorizontalView = styled.div`
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1rem;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
 `;

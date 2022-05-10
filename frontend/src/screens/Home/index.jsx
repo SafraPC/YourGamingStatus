@@ -2,15 +2,35 @@ import React from "react";
 import { Page } from "../../components/Page";
 import { PageContent, PageTitle } from "../../styles/styles";
 import DoughnutChart from "./components/doughnutChart";
+import { AddItemModal } from "./components/modal-add-items";
 import TableData from "./components/tableData";
 import VerticalChart from "./components/verticalChart";
-import { Card, CardContainer, ChartContainer, ChartContent } from "./styles";
+import {
+	AddItemButton,
+	Card,
+	CardContainer,
+	ChartContainer,
+	ChartContent,
+	HorizontalView,
+} from "./styles";
 
 const Home = () => {
+	const [showAddModalItem, setShowAddModalItem] = React.useState(false);
+
+	const closeModalItem = () => {
+		setShowAddModalItem(false);
+	};
+
 	return (
 		<Page screen="Lobby">
+			<AddItemModal onHide={closeModalItem} show={showAddModalItem} />
 			<PageContent>
-				<PageTitle>Minhas Métricas:</PageTitle>
+				<HorizontalView>
+					<PageTitle>Minhas Métricas:</PageTitle>
+					<AddItemButton onClick={() => setShowAddModalItem(true)}>
+						Adicionar Itens
+					</AddItemButton>
+				</HorizontalView>
 				<CardContainer>
 					<Card>
 						<div>
