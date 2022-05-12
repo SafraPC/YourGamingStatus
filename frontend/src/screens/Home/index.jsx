@@ -18,13 +18,12 @@ import {
 const Home = () => {
 	const [showAddModalItem, setShowAddModalItem] = React.useState(false);
 
-	const closeModalItem = () => {
-		setShowAddModalItem(false);
-	};
-
 	return (
 		<Page screen="Lobby">
-			<AddItemModal onHide={closeModalItem} show={showAddModalItem} />
+			<AddItemModal
+				onHide={() => setShowAddModalItem(false)}
+				show={showAddModalItem}
+			/>
 			<PageContent>
 				<HorizontalView>
 					<PageTitle>Minhas Métricas:</PageTitle>
@@ -54,6 +53,7 @@ const Home = () => {
 				</CardContainer>
 				<ChartContainer>
 					<RenderTabs
+						selected={"ring"}
 						label="Generos mais jogados! (TOP 10): "
 						renderGraph={() => (
 							<ChartContent>
@@ -90,6 +90,7 @@ const Home = () => {
 						)}
 					/>
 					<RenderTabs
+						selected={"ring"}
 						label="Maiores conquistas! (TOP 10): "
 						renderGraph={() => (
 							<ChartContent>

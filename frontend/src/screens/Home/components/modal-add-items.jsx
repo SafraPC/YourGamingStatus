@@ -5,9 +5,11 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { ModalForm, ModalInputField, ModalLabel } from "../styles";
 import { TOASTIFY_OPTIONS } from "../../../styles/globalStyles";
+import { useGames } from "../../../hooks/games";
 
 export const AddItemModal = ({ onHide, show }) => {
-	const handleSubmit = () => {
+	const { registerGame } = useGames();
+	const handleSubmit = async () => {
 		if (
 			!formData.gameGender ||
 			!formData.gameName ||
@@ -15,7 +17,6 @@ export const AddItemModal = ({ onHide, show }) => {
 			!formData.qtdHoursPlayed ||
 			!formData.rate
 		) {
-			console.log(formData);
 			setFormError(true);
 			toast.error(
 				"Houve um erro! verifique os campos e tente novamente.",
@@ -23,6 +24,12 @@ export const AddItemModal = ({ onHide, show }) => {
 			);
 			return;
 		}
+		if (await registerGame(formData)) {
+			toast.success("Jogo cadastrado com sucesso!", TOASTIFY_OPTIONS);
+			onHide();
+			return;
+		}
+		toast.ERROR("Houve um erro ao cadastrar o jogo", TOASTIFY_OPTIONS);
 		onHide();
 	};
 	const [formData, setFormData] = React.useState({
