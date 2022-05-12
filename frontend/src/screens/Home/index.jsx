@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { Page } from "../../components/Page";
 import { PageContent, PageTitle } from "../../styles/styles";
-import DoughnutChart from "./components/doughnutChart";
+import DoughnutChart from "./components/tables/doughnutChart";
 import { AddItemModal } from "./components/modal-add-items";
-import TableData from "./components/tableData";
+import TableData from "./components/tables/tableData";
 import { RenderTabs } from "./components/tabs/tabIndex";
-import VerticalChart from "./components/verticalChart";
+import VerticalChart from "./components/tables/verticalChart";
 import {
 	AddItemButton,
 	Card,
@@ -14,13 +15,39 @@ import {
 	ChartContent,
 	HorizontalView,
 } from "./styles";
+import { useGames } from "../../hooks/games";
 
 const Home = () => {
 	const [showAddModalItem, setShowAddModalItem] = React.useState(false);
+	const [userGames, setUserGames] = React.useState([
+		{
+			createdAt: "",
+			gender: "",
+			name: "",
+			qtdAchievements: 0,
+			qtdHoursPlayed: 0,
+			rate: 0,
+			updatedAt: "",
+			userId: "",
+			__v: 0,
+			_id: "",
+		},
+	]);
+	const { registerGame, getGames } = useGames();
+
+	const getUserGames = async () => {
+		setUserGames(await getGames());
+	};
+
+	React.useEffect(() => {
+		getUserGames();
+	}, []);
 
 	return (
 		<Page screen="Lobby">
 			<AddItemModal
+				getGames={getUserGames}
+				registerGame={registerGame}
 				onHide={() => setShowAddModalItem(false)}
 				show={showAddModalItem}
 			/>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "../styles";
+import { Table } from "../../styles";
 
 const TableData = () => {
 	return (

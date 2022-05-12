@@ -1,9 +1,12 @@
-import { registerGames } from "../api/games";
+import { getUserGamesAPI, registerGamesAPI } from "../api/games";
 
 export const useGames = () => {
 	const registerGame = async (formData) => {
-		return await registerGames(formData);
+		return await registerGamesAPI(formData);
+	};
+	const getGames = async () => {
+		return await getUserGamesAPI();
 	};
 
-	return { registerGame };
+	return { registerGame, getGames };
 };

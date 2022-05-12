@@ -5,15 +5,13 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { ModalForm, ModalInputField, ModalLabel } from "../styles";
 import { TOASTIFY_OPTIONS } from "../../../styles/globalStyles";
-import { useGames } from "../../../hooks/games";
 
-export const AddItemModal = ({ onHide, show }) => {
-	const { registerGame } = useGames();
+export const AddItemModal = ({ onHide, show, registerGame, getGames }) => {
 	const handleSubmit = async () => {
 		if (
-			!formData.gameGender ||
-			!formData.gameName ||
-			!formData.qtdAchievement ||
+			!formData.gender ||
+			!formData.name ||
+			!formData.qtdAchievements ||
 			!formData.qtdHoursPlayed ||
 			!formData.rate
 		) {
@@ -26,16 +24,24 @@ export const AddItemModal = ({ onHide, show }) => {
 		}
 		if (await registerGame(formData)) {
 			toast.success("Jogo cadastrado com sucesso!", TOASTIFY_OPTIONS);
+			setFormData({
+				name: undefined,
+				gender: "Ação",
+				qtdAchievements: undefined,
+				qtdHoursPlayed: undefined,
+				rate: undefined,
+			});
 			onHide();
+			getGames();
 			return;
 		}
-		toast.ERROR("Houve um erro ao cadastrar o jogo", TOASTIFY_OPTIONS);
+		toast.error("Houve um erro ao cadastrar o jogo", TOASTIFY_OPTIONS);
 		onHide();
 	};
 	const [formData, setFormData] = React.useState({
-		gameName: undefined,
-		gameGender: undefined,
-		qtdAchievement: undefined,
+		name: undefined,
+		gender: "Ação",
+		qtdAchievements: undefined,
 		qtdHoursPlayed: undefined,
 		rate: undefined,
 	});
@@ -64,17 +70,17 @@ export const AddItemModal = ({ onHide, show }) => {
 					<ModalInputField>
 						<ModalLabel>Nome do jogo:</ModalLabel>
 						<Input
-							isInvalid={withError(formData.gameName)}
+							isInvalid={withError(formData.name)}
 							errorBorderColor="red.300"
 							focusBorderColor="#2b2b2b"
 							variant={"filled"}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									gameName: e.target.value,
+									name: e.target.value,
 								});
 							}}
-							value={formData.gameName}
+							value={formData.name}
 							type="text"
 							placeholder="ex: The Last of Us"
 						/>
@@ -82,14 +88,14 @@ export const AddItemModal = ({ onHide, show }) => {
 					<ModalInputField>
 						<ModalLabel>Gênero do jogo:</ModalLabel>
 						<Select
-							isInvalid={withError(formData.gameGender)}
+							isInvalid={withError(formData.gender)}
 							focusBorderColor="#2b2b2b"
 							variant={"filled"}
-							value={formData.gameGender}
+							value={formData.gender}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									gameGender: e.target.value,
+									gender: e.target.value,
 								});
 							}}
 						>
@@ -108,18 +114,18 @@ export const AddItemModal = ({ onHide, show }) => {
 					<ModalInputField>
 						<ModalLabel>Quantidade de conquistas:</ModalLabel>
 						<Input
-							isInvalid={withError(formData.qtdAchievement)}
+							isInvalid={withError(formData.qtdAchievements)}
 							focusBorderColor="#2b2b2b"
 							variant={"filled"}
-							value={formData.qtdAchievement}
+							value={formData.qtdAchievements}
 							onChange={(e) => {
 								setFormData({
 									...formData,
-									qtdAchievement: e.target.value,
+									qtdAchievements: e.target.value,
 								});
 							}}
 							type="number"
-							placeholder="ex: The Last of Us"
+							placeholder="ex: 10"
 						/>
 					</ModalInputField>
 					<ModalInputField>
@@ -135,7 +141,7 @@ export const AddItemModal = ({ onHide, show }) => {
 								});
 							}}
 							type="number"
-							placeholder="ex: The Last of Us"
+							placeholder="ex: 10"
 						/>
 					</ModalInputField>
 					<ModalInputField>
@@ -170,7 +176,7 @@ export const AddItemModal = ({ onHide, show }) => {
 			</Modal.Body>
 			<Modal.Footer>
 				<Button variant="danger" onClick={onHide}>
-					Close
+					Fechar
 				</Button>
 				<Button type="submit" variant="success" onClick={handleSubmit}>
 					Cadastrar
