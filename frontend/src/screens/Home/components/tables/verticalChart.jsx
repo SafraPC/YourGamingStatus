@@ -32,36 +32,19 @@ const options = {
 	},
 };
 
-const labels = ["Total"];
-
-const data = {
-	labels,
-	datasets: [
-		{
-			label: "Aventura",
-			data: [100],
+const VerticalChart = ({ metric }) => {
+	const labels = ["Total"];
+	console.log(metric);
+	const data = {
+		labels,
+		datasets: metric?.map((item) => ({
+			label: item.name,
+			data: [item.value],
 			backgroundColor: "rgba(255, 99, 132, 0.5)",
-		},
-		{
-			label: "Terror",
-			data: [200],
-			backgroundColor: "rgba(53, 162, 235, 0.5)",
-		},
-		{
-			label: "Investigação",
-			data: [50],
-			backgroundColor: "rgba(30, 60, 125, 0.5)",
-		},
-		{
-			label: "Competitivos",
-			data: [100],
-			backgroundColor: "rgba(80, 20, 350, 0.5)",
-		},
-	],
-};
-
-const VerticalChart = () => {
-	return <Bar options={options} data={data} responsive={true} />;
+		})),
+	};
+	return <></>;
+	return metric && <Bar options={options} data={data} responsive={true} />;
 };
 
 export default VerticalChart;
