@@ -34,7 +34,6 @@ const options = {
 
 const VerticalChart = ({ metric }) => {
 	const labels = ["Total"];
-	console.log(metric);
 	const data = {
 		labels,
 		datasets: metric?.map((item) => ({

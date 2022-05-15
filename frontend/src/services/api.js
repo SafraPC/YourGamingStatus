@@ -8,15 +8,16 @@ const api = axios.create({
 		Authorization: `Bearer ${localStorage.getItem("@token")}`,
 	},
 });
-api.interceptors.response.use(
-	(response) => {
-		return response;
+
+api.interceptors.request.use(
+	(config) => {
+		config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+			"@token"
+		)}`;
+		return config;
 	},
 	async function (error) {
-		console.log("cu");
-		const access_token = localStorage.getItem("@token");
-		console.log(error.response, access_token);
-		if (error.response.status === 401 && access_token) {
+		if (error.response.status === 401 && localStorage.getItem("@token")) {
 			// localStorage.removeItem("@token");
 			// window.location.reload();
 		}
