@@ -1,7 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
-//Model for requisitions with axios:
 const api = axios.create({
 	baseURL: `${process.env.REACT_APP_BACKEND_API}`,
 	headers: {
@@ -18,8 +16,8 @@ api.interceptors.request.use(
 	},
 	async function (error) {
 		if (error.response.status === 401 && localStorage.getItem("@token")) {
-			// localStorage.removeItem("@token");
-			// window.location.reload();
+			localStorage.removeItem("@token");
+			window.location.reload();
 		}
 		return Promise.reject(error);
 	}

@@ -9,6 +9,7 @@ import {
 	Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { random_rgba } from "../../../../helpers/randomColor";
 
 ChartJS.register(
 	CategoryScale,
@@ -33,17 +34,20 @@ const options = {
 };
 
 const VerticalChart = ({ metric }) => {
-	const labels = ["Total"];
-	const data = {
-		labels,
-		datasets: metric?.map((item) => ({
-			label: item.name,
-			data: [item.value],
-			backgroundColor: "rgba(255, 99, 132, 0.5)",
-		})),
-	};
-	return <></>;
-	return metric && <Bar options={options} data={data} responsive={true} />;
+	if (metric && metric.length) {
+		const labels = ["Total"];
+
+		const data = {
+			labels,
+			datasets: metric?.map((item) => ({
+				label: item.name,
+				data: [item.value],
+				backgroundColor: random_rgba(),
+			})),
+		};
+		return <Bar options={options} data={data} responsive={true} />;
+	}
+	return null;
 };
 
 export default VerticalChart;

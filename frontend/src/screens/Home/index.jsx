@@ -71,12 +71,15 @@ const Home = () => {
 						)}
 						renderRing={() => (
 							<ChartContent>
-								<DoughnutChart metric={tableMetrics?.mostRate} />
+								<DoughnutChart
+									label="Jogo mais curtidos! (TOP 10):"
+									metric={tableMetrics?.mostRate}
+								/>
 							</ChartContent>
 						)}
 						renderTable={() => (
 							<ChartContent>
-								<TableData metric={tableMetrics?.mostRate} />
+								<TableData metric={tableMetrics?.mostRate} label="Total" />
 							</ChartContent>
 						)}
 					/>
@@ -89,12 +92,15 @@ const Home = () => {
 						)}
 						renderRing={() => (
 							<ChartContent>
-								<DoughnutChart metric={tableMetrics?.mostPlayed} />
+								<DoughnutChart
+									label="Games mais jogados! (TOP 10): "
+									metric={tableMetrics?.mostPlayed}
+								/>
 							</ChartContent>
 						)}
 						renderTable={() => (
 							<ChartContent>
-								<TableData metric={tableMetrics?.mostPlayed} />
+								<TableData metric={tableMetrics?.mostPlayed} label="Horas" />
 							</ChartContent>
 						)}
 					/>
@@ -108,12 +114,18 @@ const Home = () => {
 						)}
 						renderRing={() => (
 							<ChartContent>
-								<DoughnutChart metric={tableMetrics?.mostAchievements} />
+								<DoughnutChart
+									label="Maiores conquistas! (TOP 10):"
+									metric={tableMetrics?.mostAchievements}
+								/>
 							</ChartContent>
 						)}
 						renderTable={() => (
 							<ChartContent>
-								<TableData metric={tableMetrics?.mostAchievements} />
+								<TableData
+									metric={tableMetrics?.mostAchievements}
+									label="Qtd. Conquistas"
+								/>
 							</ChartContent>
 						)}
 					/>

@@ -24,12 +24,13 @@ export const useGames = () => {
 		const response = await registerGamesAPI(formData);
 		if (response) {
 			getGames();
+			return true;
 		}
+		return false;
 	};
 	const getGames = async () => {
 		const response = await getUserGamesAPI();
 		if (response.length) {
-			console.log("true");
 			setUserGames(response);
 			setMetrics({
 				totalGamesPlayed: response.length,
