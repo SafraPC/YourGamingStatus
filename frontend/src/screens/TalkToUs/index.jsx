@@ -3,10 +3,24 @@ import { Page } from "../../components/Page";
 import { PageContent, PageTitle } from "../../styles/styles";
 import { FormTalkToUs } from "./styles";
 import { Textarea, Button } from "@chakra-ui/react";
-
+import { toast } from "react-toastify";
+import { TOASTIFY_OPTIONS } from "../../styles/globalStyles";
+import { useTalkToUs } from "../../hooks/talkToUs";
 const TalkToUs = () => {
 	const [description, setDescription] = useState();
-	const handleSubmit = async () => {};
+	const { registerCall } = useTalkToUs();
+	const handleSubmit = async () => {
+		if (!description) {
+			toast.error("Insira uma descrição!", TOASTIFY_OPTIONS);
+			return;
+		}
+		if (await registerCall({ description: description })) {
+			toast.success("Cadastrado com sucesso!", TOASTIFY_OPTIONS);
+			setDescription("");
+			return;
+		}
+		toast.error("Houve um erro!!", TOASTIFY_OPTIONS);
+	};
 	return (
 		<Page screen="Fale Conosco">
 			<PageContent>

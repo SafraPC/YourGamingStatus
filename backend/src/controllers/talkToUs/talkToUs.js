@@ -1,6 +1,6 @@
 const TalkToUsModel = require("../../models/talkToUs");
 
-const registerGames = async (req, res) => {
+const registerCall = async (req, res) => {
 	try {
 		const { description } = req.body;
 		const createdDescription = await TalkToUsModel.create({
@@ -21,4 +21,4 @@ const registerGames = async (req, res) => {
 	}
 };
 
-module.exports = { registerGames };
+module.exports = { registerCall };
