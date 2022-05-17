@@ -11,9 +11,10 @@ export const Table = styled.table`
 		text-align: left;
 		padding: 8px;
 	}
-
-	> tr:nth-child(even) {
-		background-color: #dddddd;
+	> tbody {
+		> tr:nth-child(even) {
+			background-color: #dddddd;
+		}
 	}
 `;
 export const ChartContainer = styled.div``;

@@ -45,7 +45,7 @@ const VerticalChart = ({ metric }) => {
 				backgroundColor: random_rgba(),
 			})),
 		};
-		return <Bar options={options} data={data} responsive={true} />;
+		return <Bar options={options} data={data} responsive="true" />;
 	}
 	return null;
 };

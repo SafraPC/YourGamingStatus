@@ -5,16 +5,20 @@ const TableData = ({ metric, label }) => {
 	if (metric && metric.length) {
 		return (
 			<Table>
-				<tr>
-					<th>Nome</th>
-					<th>{label}</th>
-				</tr>
-				{metric.map((item) => (
+				<thead>
 					<tr>
-						<td>{item.name}</td>
-						<td>{item.value}</td>
+						<th>Nome</th>
+						<th>{label}</th>
 					</tr>
-				))}
+				</thead>
+				<tbody>
+					{metric.map((item, index) => (
+						<tr key={index}>
+							<td>{item.name}</td>
+							<td>{item.value}</td>
+						</tr>
+					))}
+				</tbody>
 			</Table>
 		);
 	}
